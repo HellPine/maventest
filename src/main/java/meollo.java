@@ -124,7 +124,7 @@ public class meollo {
 	   write.write("<html><head> Report of "+ ft.format(date) + "</head><body>"+ tocheck +"</body></html>");
 	   
 	   write.close();
-	   	   
+	   Desktop.getDesktop().open(file);
 	   driver.close();
 	   driver.quit();
 	   //System.exit(0);
