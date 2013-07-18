@@ -112,6 +112,7 @@ public class meollo {
 		   
 	   }
 	   driver.close();
+	   driver.quit();
 	   //System.exit(0);
 	   return;
 
