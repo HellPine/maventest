@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
+import java.text.*; 
 
 import org.apache.commons.io.FileUtils;
 import org.junit.*;
@@ -89,20 +90,22 @@ public class meollo {
 	    //System.out.println("Works perfectly!!");
 	    
 	   List<WebElement> elements = driver.findElements(By.xpath("//div[contains(@class,'articlecontainer') or contains(@class,'content') or contains(@id,'content')]"));
-	   
+	   String tocheck="";
 	   if(elements.size()>0){
 		   
 		   System.out.print(elements.size()+"\n");
 		   //int i=0;
-		   String tocheck="";
+		   
 		   for (WebElement we: elements){ 
 			   if(! we.getText().equals(" ")){
-			   tocheck=tocheck+"--------------------\n"; 
-				tocheck=tocheck+we.getText()+"\n";}
+			   tocheck=tocheck+"--------------------<p>"; 
+				tocheck=tocheck+we.getText()+"<p>";}
 				
 		   }
 			
 		   System.out.print(tocheck);//: elements){
+		   
+		   
 			   //System.out.print(i+"\n");
 			   //System.out.print(we.getText());
 			 //  i++;
@@ -111,6 +114,17 @@ public class meollo {
 		   
 		   
 	   }
+	   Date date = new Date();
+	   SimpleDateFormat lt = 
+	   new SimpleDateFormat ("dd.MM.yyyy.hh.mm.ss");
+	   File file = new File("report"+lt.format(date)+".html");
+	   FileWriter write = new FileWriter(file,true);
+	   SimpleDateFormat ft = 
+			   new SimpleDateFormat ("E dd.MM.yyyy 'at' hh:mm:ss a zzz");
+	   write.write("<html><head> Report of "+ ft.format(date) + "</head><body>"+ tocheck +"</body></html>");
+	   
+	   write.close();
+	   	   
 	   driver.close();
 	   driver.quit();
 	   //System.exit(0);
