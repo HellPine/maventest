@@ -39,6 +39,7 @@ public class mainTest {
 		//System.out.println(num1);
 		//System.out.println("Adios");
 		me.setUp(url);
+		//System.exit(0);
 				
 		
 				
